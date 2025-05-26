@@ -1,0 +1,22 @@
+﻿@model Facturacion_MVC.Models.Tblcliente
+@{
+    ViewBag.titulo = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">Editar Cliente</h2>
+@using (Html.BeginForm("Editar", "TBLCliente", FormMethod.Post))
+{
+    @Html.HiddenFor(d => d.IdCliente)
+    <p>@Html.LabelFor(d => d.StrNombre) : @Html.TextBoxFor(d => d.StrNombre) </p>
+    <p>@Html.LabelFor(d => d.NumDocumento) : @Html.TextBoxFor(d => d.NumDocumento) </p>
+    <p>@Html.LabelFor(d => d.StrDireccion) : @Html.TextBoxFor(d => d.StrDireccion) </p>
+    <p>@Html.LabelFor(d => d.StrTelefono) : @Html.TextBoxFor(d => d.StrTelefono) </p>
+    <p>@Html.LabelFor(d => d.StrEmail) : @Html.TextBoxFor(d => d.StrEmail) </p>
+    
+    <p>@Html.LabelFor(d => d.DtmFechaModifica) : @Html.EditorFor(d => d.DtmFechaModifica) </p>
+
+    
+    <input value="Guardar" type="submit" class="btn btn-success">
+    <a class="btn btn-primary" href="~/TBLcliente">Retornar</a>
+}

@@ -1,0 +1,66 @@
+﻿@model Facturacion_MVC.Models.Tblempleado
+@{
+    ViewBag.titulo = "Nuevo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <h2 class="mb-4">Nuevo Empleado</h2>
+
+@using (Html.BeginForm("Nuevo", "TBLEmpleado", FormMethod.Post))
+    {
+    <div class="row mb-3">
+        <div class="col-md-6">
+            @Html.LabelFor(d => d.StrNombre, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(d => d.StrNombre, new { @class = "form-control" })
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(d => d.NumDocumento, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(d => d.NumDocumento, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            @Html.LabelFor(d => d.StrDireccion, htmlAttributes: new { @class = "form-label" })
+            @Html.TextAreaFor(d => d.StrDireccion, new { @class = "form-control", rows = 2 })
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(d => d.StrTelefono, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(d => d.StrTelefono, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            @Html.LabelFor(d => d.StrEmail, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(d => d.StrEmail, new { @class = "form-control" })
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Rol</label>
+            @Html.DropDownList("IdRolEmpleado", null, "-- Seleccione --", new { @class = "form-select" })
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            @Html.LabelFor(d => d.DtmIngreso, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(d => d.DtmIngreso, new { @class = "form-control", @type = "date" })
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(d => d.DtmRetiro, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(d => d.DtmRetiro, new { @class = "form-control", @type = "date" })
+        </div>
+    </div>
+
+    <div class="mb-4">
+        @Html.LabelFor(d => d.StrDatosAdicionales, htmlAttributes: new { @class = "form-label" })
+        @Html.TextBoxFor(d => d.StrDatosAdicionales, new { @class = "form-control" })
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <input type="submit" value="Guardar" class="btn btn-primary me-2" />
+        <a href="@Url.Action("Index", "TBLEmpleado")" class="btn btn-secondary">Cancelar</a>
+    </div>
+    }
+

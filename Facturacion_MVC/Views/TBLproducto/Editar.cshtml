@@ -1,0 +1,89 @@
+﻿@model Facturacion_MVC.Models.Tblproducto
+@{
+    ViewBag.titulo = "Editar Producto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">Editar Producto</h2>
+@using (Html.BeginForm("Editar", "TBLProducto", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(d => d.IdProducto) <!-- Add hidden field for product ID -->
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            @Html.LabelFor(d => d.StrNombre, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(d => d.StrNombre, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(d => d.StrNombre, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(d => d.StrCodigo, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(d => d.StrCodigo, new { @class = "form-control", required = "required" })
+            @Html.ValidationMessageFor(d => d.StrCodigo, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            @Html.LabelFor(d => d.NumPrecioCompra, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(d => d.NumPrecioCompra, new { @class = "form-control", type = "number", step = "0.01", required = "required" })
+            @Html.ValidationMessageFor(d => d.NumPrecioCompra, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(d => d.NumPrecioVenta, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(d => d.NumPrecioVenta, new { @class = "form-control", type = "number", step = "0.01", required = "required" })
+            @Html.ValidationMessageFor(d => d.NumPrecioVenta, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            @Html.LabelFor(d => d.StrDetalle, htmlAttributes: new { @class = "form-label" })
+            @Html.TextAreaFor(d => d.StrDetalle, new { @class = "form-control", rows = 2 })
+            @Html.ValidationMessageFor(d => d.StrDetalle, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            @Html.LabelFor(d => d.NumStock, htmlAttributes: new { @class = "form-label" })
+            @Html.TextBoxFor(d => d.NumStock, new { @class = "form-control", type = "number", required = "required" })
+            @Html.ValidationMessageFor(d => d.NumStock, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            @Html.LabelFor(d => d.IdCategoria, "Categoría", htmlAttributes: new { @class = "form-label" })
+            @Html.DropDownListFor(d => d.IdCategoria, ViewBag.Categorias as SelectList, "Seleccione una categoría", new { @class = "form-select", required = "required" })
+            @Html.ValidationMessageFor(d => d.IdCategoria, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-6">
+            @Html.Label("StrFoto", "Foto del Producto", htmlAttributes: new { @class = "form-label" })
+            <input type="file" name="StrFotoFile" class="form-control" accept="image/*" />
+            @if (!string.IsNullOrEmpty(Model.StrFoto))
+            {
+                <div class="mt-2">
+                    <p>Imagen actual:</p>
+                    <img src="@Url.Content(Model.StrFoto)" alt="Imagen del producto" style="max-width: 100px; max-height: 100px;" />
+                    <input type="hidden" name="StrFoto" value="@Model.StrFoto" />
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6">
+            @Html.Label("StrUsuarioModifica", "Usuario que modifica", htmlAttributes: new { @class = "form-label" })
+            @Html.TextBox("StrUsuarioModifica", "", new { @class = "form-control", required = "required" })
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <input value="Guardar cambios" type="submit" class="btn btn-success me-2" />
+        <a class="btn btn-secondary" href="~/TBLProducto">Cancelar</a>
+    </div>
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger mt-3">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+}

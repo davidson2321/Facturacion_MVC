@@ -1,0 +1,24 @@
+﻿@model Facturacion_MVC.Models.Tblempleado
+@{
+    ViewBag.titulo = "Editar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mb-4">Editar Empleado</h2>
+@using (Html.BeginForm("Editar", "TBLEmpleado", FormMethod.Post))
+{
+    @Html.HiddenFor(d => d.IdEmpleado)
+ <p>@Html.LabelFor(d => d.StrNombre) : @Html.TextBoxFor(d => d.StrNombre) </p>
+ <p>@Html.LabelFor(d => d.NumDocumento) : @Html.TextBoxFor(d => d.NumDocumento) </p>
+ <p>@Html.LabelFor(d => d.StrDireccion) : @Html.TextBoxFor(d => d.StrDireccion) </p>
+ <p>@Html.LabelFor(d => d.StrTelefono) : @Html.TextBoxFor(d => d.StrTelefono) </p>    
+    <p>@Html.LabelFor(d => d.StrEmail) : @Html.TextBoxFor(d => d.StrEmail) </p>
+    <p> ROL : @Html.DropDownList("IdRolEmpleado") </p>
+    <p>@Html.LabelFor(d => d.DtmIngreso) : @Html.EditorFor(d => d.DtmIngreso) </p>
+    <p>@Html.LabelFor(d => d.DtmRetiro) : @Html.EditorFor(d => d.DtmRetiro) </p>
+    <p>
+        @Html.LabelFor(d => d.StrDatosAdicionales) :<br /> @Html.TextAreaFor(d => d.StrDatosAdicionales)
+    </p>
+    <input value="Guardar" type="submit" class="btn btn-success">
+    <a class="btn btn-primary" href="~/TBLempleado">Retornar</a>
+}
